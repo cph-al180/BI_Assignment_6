@@ -170,6 +170,7 @@ def run():
     trainModel()
     calcMAE()
     calcRMSE()
+    print 'Score: ', model.score(TEST_X, test_karma)
     kfold()
     print 'done'
 

@@ -1,5 +1,8 @@
 import json
 import numpy as np
+import math
+from sklearn import linear_model
+from sklearn.metrics import mean_absolute_error, mean_squared_error
 
 traindata = 'training.json'
 testdata = 'testing.json'
@@ -19,8 +22,8 @@ def formatData():
     global test_submitted
     global test_karma
     global test_created
-    global TRAIN_CREATED
-    global TEST_CREATED
+    global TRAIN_X
+    global TEST_X
     
     train_karma = []
     train_created = []
@@ -28,8 +31,8 @@ def formatData():
     test_karma = []
     test_created = []
     test_submitted = []
-    TRAIN_CREATED = []
-    TEST_CREATED = []
+    TRAIN_X = []
+    TEST_X = []
     
     for i in training_data:
         if not i.has_key('karma') or not i.has_key('created') or not i.has_key('submitted'):
@@ -49,14 +52,48 @@ def formatData():
         test_created.append(j["created"])
         test_submitted.append(i["submitted"])
 
-    TRAIN_CREATED = np.array([train_created])
-    TRAIN_CREATED = TRAIN_CREATED.T
-    TEST_CREATED = np.array([test_created])
-    TEST_CREATED = TEST_CREATED.T   
+    TRAIN_X = np.array([train_created, train_submitted])
+    TRAIN_X = TRAIN_X.T
+    TEST_X = np.array([test_created, test_submitted])
+    TEST_X = TEST_X.T
+
+def trainModel():
+    global model
+
+    x, y = TRAIN_X, train_karma
+
+    model = linear_model.LinearRegression()
+    model.fit(x, y)
+
+def calcMAE():
+    train_karma_pred = model.predict(TRAIN_X)
+    test_karma_pred = model.predict(TEST_X)
+    
+    train_MAE = mean_absolute_error(train_karma, train_karma_pred)
+    test_MAE = mean_absolute_error(test_karma, test_karma_pred)
+    
+    print('Train MAE: ', train_MAE)
+    print('Test MAE: ', test_MAE)
+
+def calcRMSE():
+    train_karma_pred = model.predict(TRAIN_X)
+    test_karma_pred = model.predict(TEST_X)
+
+    train_MSE = mean_squared_error(train_karma, train_karma_pred)
+    test_MSE = mean_squared_error(test_karma, test_karma_pred)
+    train_MSE = math.sqrt(train_MSE)
+    test_MSE = math.sqrt(test_MSE)
+    
+    print('Train MSE: ', train_MSE)
+    print('Test MSE: ', test_MSE)
+    
 
 def run():
     getData()
     formatData()
+    trainModel()
+    calcMAE()
+    calcRMSE()
     print 'done'
 
 run()

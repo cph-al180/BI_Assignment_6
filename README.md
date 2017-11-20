@@ -125,3 +125,6 @@ def kfold():
 ``` 
 
 ## Part 3 - Logistic Model
+The dataset consists of ID, diagnosis and 10 parameters describing the cancer, these 10 parameters all have an average value, a standard error and a worst
+
+We can say with 92.9 percent confidence whether the tumor is benign or malignant

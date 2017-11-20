@@ -2,6 +2,18 @@
 
 ## Part 1   - HackerNews MAE & RMSE
 
+Without # of posts (old):  
+`MAE (Training): x`  
+`MAE (Testing): x`  
+`RMSE (Training): x`  
+`RMSE (Testing): x`  
+
+With # of posts (new):  
+`MAE (Training): x`  
+`MAE (Testing): x`  
+`RMSE (Training): x`  
+`RMSE (Testing): x` 
+
 Training:  
 ```python
 def trainModel():
@@ -29,18 +41,7 @@ def calcMAE():
     test_MSE = mean_squared_error(test_karma, test_karma_pred)
     train_MSE = math.sqrt(train_MSE)
     test_MSE = math.sqrt(test_MSE)
-```  
-Without # of posts (old):  
-`MAE (Training): x`  
-`MAE (Testing): x`  
-`RMSE (Training): x`  
-`RMSE (Testing): x`  
-
-With # of posts (new):  
-`MAE (Training): x`  
-`MAE (Testing): x`  
-`RMSE (Training): x`  
-`RMSE (Testing): x`  
+```   
 
 ## Part 2 - K-Fold Cross Validation
 

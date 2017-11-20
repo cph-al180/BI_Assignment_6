@@ -2,6 +2,9 @@
 
 ## Part 1   - HackerNews MAE & RMSE
 
+Theoretically speaking, if the new metric has any correlation with the amount of karma a given user has, then the new model should have better results. If the results are the same or worse, then the new metric adds nothing to the model.  
+As we can see from the results, the MAE is quite a bit lower. The RMSE is still fairly high, but it makes sense that the result with testing data is higher than training, which counts for both MAE and RMSE (using new data). Overall the new results are a big improvement.
+
 Without # of posts (old):  
 `MAE (Training): 4535.2278195244253`  
 `MAE (Testing): 4363.9936837520208`  

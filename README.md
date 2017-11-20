@@ -3,16 +3,16 @@
 ## Part 1   - HackerNews MAE & RMSE
 
 Without # of posts (old):  
-`MAE (Training): x`  
-`MAE (Testing): x`  
-`RMSE (Training): x`  
-`RMSE (Testing): x`  
+`MAE (Training): 4535.2278195244253`  
+`MAE (Testing): 4363.9936837520208`  
+`RMSE (Training): 10230.170612147558`  
+`RMSE (Testing): 7858.119559984959`  
 
 With # of posts (new):  
-`MAE (Training): x`  
-`MAE (Testing): x`  
-`RMSE (Training): x`  
-`RMSE (Testing): x` 
+`MAE (Training): 1685.15838569`  
+`MAE (Testing): 3621.08926426`  
+`RMSE (Training): 4420.63815212`  
+`RMSE (Testing): 10015.2422784` 
 
 Training:  
 ```python

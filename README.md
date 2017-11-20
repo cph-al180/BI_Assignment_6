@@ -4,7 +4,7 @@
 
 Theoretically speaking, if the new metric has any correlation with the amount of karma a given user has, then the new model should have better results. If the results are the same or worse, then the new metric adds nothing to the model.  
 As we can see from the results, the MAE is quite a bit lower. The RMSE is still fairly high, but it makes sense that the result with testing data is higher than training, which counts for both MAE and RMSE (using new data). Overall the new results are a big improvement.  
-The difference in score between the 2 models, is however pretty interesting. The score of the new model is worse than the old one? If we again look at the training results from the old and new model, we can see that the new model is vastly better. However, if we only compare the testing results, then the new model isn't that much better, and possbily even worse. This highlights the issue with the using the 80/20 split, as the testing data from the new model clearly deviates far from the model, which results in a worse score.
+However, the difference in score between the 2 models, pretty interesting. Strangely enough, the score of the new model is worse than the old one. If we again look at the training results from the old and new model, we can see that the new model is vastly better. However, if we only compare the testing results, then the new model isn't that much better, and possbily even worse. This highlights the issue with using the 80/20 split, as the testing data from the new model clearly deviates far from the model, which results in a worse score.
 
 Without # of posts (old):  
 `MAE (Training): 4535.2278195244253`  

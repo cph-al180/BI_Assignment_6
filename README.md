@@ -6,9 +6,7 @@ Training:
 ```python
 def trainModel():
     global model
-
     x, y = TRAIN_X, train_karma
-
     model = linear_model.LinearRegression()
     model.fit(x, y)  
 ```
@@ -31,10 +29,18 @@ def calcMAE():
     test_MSE = mean_squared_error(test_karma, test_karma_pred)
     train_MSE = math.sqrt(train_MSE)
     test_MSE = math.sqrt(test_MSE)
-```   
-  
-  
+```  
+Without # of posts (old):  
+`a`  
+`a`  
+`a`  
+`a`  
 
+With # of posts (new):  
+`a`  
+`a`  
+`a`  
+`a`  
 
 ## Part 2 - K-Fold Cross Validation
 

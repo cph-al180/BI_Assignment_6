@@ -90,7 +90,7 @@ def kfold():
         X_train, X_test = X[train_indices], X[test_indices]
         y_train, y_test = y[train_indices], y[test_indices]
 
-        pl = PolynomialFeatures(degree=10, include_bias=False)
+        pl = PolynomialFeatures(degree=1, include_bias=False)
         lm = LinearRegression()
     
         pipeline = Pipeline([("pl", pl), ("lm", lm)])

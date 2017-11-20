@@ -51,6 +51,10 @@ def calcRMSE():
 
 ## Part 2 - K-Fold Cross Validation  
 
+As we can see from the results, all of the metrics from the 10-fold Cross Validation are better than the regular 80/20 split. The biggest outliers are naturally the results using testing data, since we use ALL of the data for testing, and not just 20%.  
+As previously mentioned, this is because of the inconsistency of the 80/20 split, where the last 20% might deviate heavily from the training data.  
+The score clearly shows the issue with the 80/20 split, since the score of the 10-fold Cross Validation is much higher than the score of the model using the 80/20 split, which explains why the score of the 80/20 model was lower than the old model, which did not include # of posts.
+
 Average 10-Fold Cross Validation results:  
 `MAE (Training): 1685.38972976`  
 `MAE (Testing): 1685.38972976`  

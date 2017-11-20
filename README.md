@@ -31,16 +31,16 @@ def calcMAE():
     test_MSE = math.sqrt(test_MSE)
 ```  
 Without # of posts (old):  
-`a`  
-`a`  
-`a`  
-`a`  
+`MAE (Training): x`  
+`MAE (Testing): x`  
+`RMSE (Training): x`  
+`RMSE (Testing): x`  
 
 With # of posts (new):  
-`a`  
-`a`  
-`a`  
-`a`  
+`MAE (Training): x`  
+`MAE (Testing): x`  
+`RMSE (Training): x`  
+`RMSE (Testing): x`  
 
 ## Part 2 - K-Fold Cross Validation
 

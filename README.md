@@ -40,7 +40,7 @@ def calcMAE():
   
 RMSE:  
 ```python
-def calcMAE():
+def calcRMSE():
     train_karma_pred = model.predict(TRAIN_X)
     test_karma_pred = model.predict(TEST_X)
     train_MSE = mean_squared_error(train_karma, train_karma_pred)
@@ -49,6 +49,75 @@ def calcMAE():
     test_MSE = math.sqrt(test_MSE)
 ```   
 
-## Part 2 - K-Fold Cross Validation
+## Part 2 - K-Fold Cross Validation  
+
+Average 10-Fold Cross Validation results:  
+`MAE (Training): 1685.38972976`  
+`MAE (Testing): 1685.38972976`  
+`RMSE (Training): 4419.64858547`  
+`RMSE (Testing): 4368.67775664`   
+`Score: 0.741106182258`  
+  
+K-Fold Cross Validation:  
+```python
+def kfold():
+    X = []
+    y = []
+    x_temp_1 = []
+    x_temp_2 = []
+    total_score = 0
+    total_train_MAE = 0
+    total_test_MAE = 0
+    total_train_RMSE = 0
+    total_test_RMSE = 0
+    
+    for i in training_data:
+        if not i.has_key('karma') or not i.has_key('created') or not i.has_key('submitted'):
+            i["karma"] = 0;
+            i["created"] = 1509813038
+            i["submitted"] = 0
+        y.append(i["karma"])
+        x_temp_1.append(i["created"])
+        x_temp_2.append(i["submitted"])      
+    X = np.array([x_temp_1, x_temp_2])
+    X = X.T
+    y = np.array([y])
+    y = y.T
+    
+    folds = KFold(n_splits = 10)
+    for train_indices, test_indices in folds.split(X, y):
+        i = i+1
+        X_train, X_test = X[train_indices], X[test_indices]
+        y_train, y_test = y[train_indices], y[test_indices]
+
+        pl = PolynomialFeatures(degree=10, include_bias=False)
+        lm = LinearRegression()
+    
+        pipeline = Pipeline([("pl", pl), ("lm", lm)])
+        pipeline.fit(X_train, y_train)
+
+        y_train_pred = pipeline.predict(X_train)
+        y_test_pred = pipeline.predict(X_test)
+
+        train_RMSE = mean_squared_error(y_train, y_train_pred)
+        test_RMSE = mean_squared_error(y_test, y_test_pred)
+        train_RMSE = math.sqrt(train_RMSE)
+        test_RMSE = math.sqrt(test_RMSE)
+
+        train_MAE = mean_absolute_error(y_train, y_train_pred)
+        test_MAE = mean_absolute_error(y_test, y_test_pred)
+
+        total_train_MAE = total_train_MAE + train_MAE
+        total_test_MAE = total_test_MAE + test_MAE
+        total_train_RMSE = total_train_RMSE + train_RMSE
+        total_test_RMSE = total_test_RMSE + test_RMSE
+        total_score = total_score + pipeline.score(X_test, y_test)
+
+    print '10-fold avg Score:', total_score / 10
+    print '10-fold avg Train MAE:', total_train_MAE / 10
+    print '10-fold avg Test MAE:', total_test_MAE / 10
+    print '10-fold avg Train RMSE:', total_train_RMSE / 10
+    print '10-fold avg Test RMSE:', total_test_RMSE / 10
+``` 
 
 ## Part 3 - Logistic Model
